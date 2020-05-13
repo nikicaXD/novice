@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<style>
+
+    .card {
+        height: 100%;
+        max-width: none;
+
+    }
+
+    .col-4 {
+        margin-bottom: 24px;
+        max-width: none;
+    }
+
+    nav {
+        margin-bottom: 24px;
+    }
+
+
+
+    .card-body {
+        display: flex;
+        flex-flow: column;
+        max-width: 100%;
+
+    }
+
+    .card-tittle {
+        margin-bottom: 24px;
+
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+    }
+
+
+
+
+</style>
+
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="OnTop">
+    <a class="navbar-brand" href="/">24ur</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Naslovnica <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{6.}}">Šport</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/201">Novice</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/202">POP IN</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/208">Sveže</a>
+            </li>
+
+
+        </ul>
+
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="card-deck">
+
+    {{range $i, $a:=.Articles}}
+
+        <div class="col-4">
+            <div class="card border-info mb-3">
+
+
+                <a href="/article/{{$a.Id}}"><img class="card-img-top" style="width:100%"
+                                                  src={{$a.FrontImage.Src}}/></a>
+                <div class="card-body">
+                    <h5 class="card-tittle"><a href="/article/{{$a.Id}}">{{$a.Title}}</a></h5>
+
+
+                    <a href="/article/{{$a.Id}}#comments" class="btn btn-primary"><img
+                            src="http://v2014.my-europa.eu/images/interact.png"
+                            style="width: 25px">   {{$a.Comments.Total}}</a>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    {{end}}
+
+    </div>
+</div>
+<footer class="container-fluid text-center">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                ©24ur.com, Vse pravice pridržane
+            </div>
+            <div class="col-5">
+
+            </div>
+            <div class="col">
+                <a href="#OnTop">
+                    <button type="button" class="btn btn-link pull-right"><img style="width: 20px"
+                                                                               src="https://image.flaticon.com/icons/svg/25/25649.svg">
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</footer>
+
+</body>
+</html>

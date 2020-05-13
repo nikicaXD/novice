@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <title>Članek: {{.Title}} </title>
+
+</head>
+<style>
+
+
+    .mr-3 {
+        height: 50px;
+        width: 50px;
+    }
+
+    .col-sm-8 {
+        padding-top: 24px;
+    }
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+        padding-top: 20px;
+        background-color: #f1f1f1;
+
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+    }
+
+
+</style>
+
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="OnTOP">
+    <a class="navbar-brand" href="/">24ur</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Naslovnica <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/6">Šport</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/201">Novice</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/202">POP IN</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/208">Sveže</a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+
+        </div>
+        <div class="col-sm-8 text-left">
+            <h1 class="text-center">{{.Title}}</h1>
+            <hr>
+            <img src="{{.FrontImage.Src}}" class="img-fluid" alt="Responsive image">
+            <hr>
+            <p><b>{{.Summary}}</b></p>
+            <hr>
+
+            <p>{{.BodyHtml}}</p>
+        </div>
+        <div class="col-sm-2 sidenav">
+
+        </div>
+    </div>
+
+</div>
+
+
+{{$l :=len .Comments.Comments}} {{if ne $l 0}}
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+
+        </div>
+
+        <div class="col-sm-8 text-left" id="comments">
+            <hr>
+            <h2>Komentarji</h2>
+            <hr>
+        {{range $i, $c:=.Comments.Comments}}
+            <div class="media">
+
+                <img class="mr-3 rounded-circle" src="{{$c.Owner.AvatarURL}}" alt="Generic placeholder image">
+                <div class="media-body">
+                    <h6 class="mt-0">{{$c.Owner.Nickname}}</h6>
+                    <p>{{$c.Body}}</p>
+                    <hr>
+                {{range $i, $r:=$c.Replies}}
+
+                    <div class="media mt-3">
+
+
+                        <img class="mr-3 rounded-circle" src="{{$r.Owner.AvatarURL}}" alt="Generic placeholder image">
+
+                        <div class="media-body">
+                            <h6 class="mt-0">{{$r.Owner.Nickname}}</h6>
+                            <p>{{$r.Body}}</p>
+                            <hr>
+                        </div>
+                    </div>
+                {{end}}
+                </div>
+
+            </div>
+        {{end}}
+        </div>
+        <div class="col-sm-2 sidenav">
+
+        </div>
+    </div>
+
+</div>
+{{end}}
+
+<footer class="container-fluid text-center">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                ©24ur.com, Vse pravice pridržane
+            </div>
+            <div class="col-5">
+
+            </div>
+            <div class="col">
+                <a href="#OnTOP">
+                    <button type="button" class="btn btn-link pull-right"><img style="width: 20px"
+                                                                               src="https://image.flaticon.com/icons/svg/25/25649.svg">
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</footer>
+
+
+</body>
+</html>
